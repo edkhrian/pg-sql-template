@@ -1,0 +1,40 @@
+{
+  "name": "pg-sql-template",
+  "version": "1.0.0",
+  "description": "Convenient SQL template tag to run queries using pg library",
+  "keywords": ["pg", "sql", "template", "tag", "pg-format", "query"],
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://edkhrian@github.com/edkhrian/pg-sql-template.git"
+  },
+  "files": ["lib/**/*"],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edkhrian/pg-sql-template/issues"
+  },
+  "homepage": "https://github.com/edkhrian/pg-sql-template#readme",
+  "devDependencies": {
+    "@types/pg": "^8.6.6",
+    "@types/pg-format": "^1.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.3",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "pg": "^8.8.0",
+    "pg-format": "^1.0.4"
+  }
+}

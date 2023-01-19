@@ -1,6 +1,6 @@
 {
   "name": "pg-sql-template",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Convenient SQL template tag to run queries using pg library",
   "keywords": [
     "pg",

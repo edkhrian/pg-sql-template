@@ -6,7 +6,7 @@ Powerful module to build and run postgres queries using ES6 tagged template stri
 
 ### Features
 - Automatically camelCasing all object keys in result data (can be turned off);
-- Escaping strings to protect from SQL injections (thanks for [pg-format](https://github.com/datalanche/node-pg-format));
+- Escaping strings to protect from SQL injections (thanks to [pg-format](https://github.com/datalanche/node-pg-format));
 - Support for nested and reusable queries;
 - Convenient methods to run a query and get the result: `.many()`, `.manyOrNone()`, `.one()`, `.oneOrNone()`, `.value()`, `.valueOrNone()`, `.run()`;
 - TypeScript friendly;
@@ -26,7 +26,7 @@ import { SQLFactory } from 'pg-sql-template';
 import { Pool } from 'pg';
 
 const pool = new Pool({
-  // connection config goes here
+  // pg connection config goes here
 });
 
 export const SQL = SQLFactory({ 
@@ -36,7 +36,7 @@ export const SQL = SQLFactory({
 ```
 From now the `SQL` variable is your main instance of the query builder, which you will use across the project to run queries.
 
-One of the cool features of this module is that it can transform all keys from result data to camel case.
+One of the cool features of this module is that it can transform all object keys from result data to camel case.
 
 ## Usage
 
@@ -94,7 +94,7 @@ await SQL`...`.many(options);
 ```
 
 When you run any of the execution methods, SQL query is generated which then passed to [pg-format](https://github.com/datalanche/node-pg-format). Returned final string then will run in [pg](https://github.com/brianc/node-postgres).   
-By default, all injections `${...}` will be used as `%L` expression for pg-format. But you can control that by additional methods:
+By default, all template injections `${...}` will be used as `%L` expression for pg-format. But you can control that by additional methods `.i(), .s()`:
 ```typescript
 const userId = 1;
 const userName = 'Eduard';

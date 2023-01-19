@@ -2,19 +2,25 @@
   "name": "pg-sql-template",
   "version": "1.0.0",
   "description": "Convenient SQL template tag to run queries using pg library",
-  "keywords": ["pg", "sql", "template", "tag", "pg-format", "query"],
-  "main": "index.js",
+  "keywords": ["pg", "sql", "template", "tag", "pg-format", "node-pg-format", "query"],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "prepare" : "npm run build",
+    "prepublishOnly" : "npm run lint",
+    "preversion" : "npm run lint",
+    "version" : "npm run format && git add -A src",
+    "postversion" : "git push && git push --tags"
   },
   "repository": {
     "type": "git",
     "url": "git+https://edkhrian@github.com/edkhrian/pg-sql-template.git"
   },
   "files": ["lib/**/*"],
-  "author": "",
+  "author": "Eduard Khachatrian",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/edkhrian/pg-sql-template/issues"

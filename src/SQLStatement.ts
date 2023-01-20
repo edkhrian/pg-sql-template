@@ -93,9 +93,9 @@ export class SQLStatement<Result> {
       name: options?.name,
     });
     let rows: T[] = [];
-    let fields = result.fields.map(item => item.name);
+    let fields = (result.fields || []).map(item => item.name);
 
-    if (keysType === 'camelCase') {
+    if (fields.length > 0 && keysType === 'camelCase') {
       fields = fields.map(camelCase);
       rows = result.rows.map((row: any[]) => {
         return row.reduce((obj, value: any, index) => {
@@ -109,8 +109,11 @@ export class SQLStatement<Result> {
     return { rows, rowCount: result.rowCount, command: result.command };
   }
 
-  async run<T = Result>(options?: SQLResultOptions): Promise<void> {
-    await this.execute<T>(options);
+  async run(options?: SQLResultOptions): Promise<void> {
+    await this.raw({
+      client: options?.client || this.options.client,
+      name: options?.name,
+    });
   }
 
   async many<T = Result>(options?: SQLResultOptions): Promise<T[]> {

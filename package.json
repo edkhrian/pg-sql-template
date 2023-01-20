@@ -1,6 +1,6 @@
 {
   "name": "pg-sql-template",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Powerful module to build and run postgres queries using ES6 tagged template strings.",
   "keywords": [
     "pg",

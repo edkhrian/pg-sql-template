@@ -2,7 +2,7 @@ import { withArray } from 'pg-format';
 import { Client, ClientBase, Pool, QueryArrayResult } from 'pg';
 import { camelCase, camelCaseKeys } from './utils';
 import { SQLError } from './SQLError';
-import { SQLComponentI, SQLComponentS } from './components';
+import { SQLComponentI, SQLComponentS, SQLComponentL, SQLComponentRaw } from './components';
 
 export type AnyClient = ClientBase | Pool | Client;
 
@@ -60,12 +60,19 @@ export class SQLStatement<Result> {
           values = values.concat(parseData.values);
           break;
         case value instanceof SQLComponentI:
-          values.push(value);
+          values.push(value.value);
           format += '%I';
           break;
         case value instanceof SQLComponentS:
-          values.push(value);
+          values.push(value.value);
           format += '%S';
+          break;
+        case value instanceof SQLComponentL:
+          values.push(value.value);
+          format += '%L';
+          break;
+        case value instanceof SQLComponentRaw:
+          format += value.value;
           break;
         default:
           values.push(value);

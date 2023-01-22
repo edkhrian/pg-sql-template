@@ -109,8 +109,10 @@ SQL`SELECT * FROM ${SQL.i('users')} WHERE users.name = ${SQL.s(userName)}`;
 // pg-format: SELECT * FROM %I WHERE users.name = %S; -- VALUES: ['users', 'Eduard']
 ```
 
+Additional to those methods, there is another one `SQL.raw("string")`, which adds a passed argument to the query string like raw string without formation (it's dangerous, so call it only for internal use, not for user input data).
+
 ## Tips
-For such methods like `one`, `value` there could be an error `SQLError` be thrown. Recommended to not rely on this error for returning "404 Not Found" response to user but rather consider that error as internal server problems. Because if all of that methods used correctly, there won't be any `SQLError` error thrown.
+For such methods like `one`, `value` there could be an error `SQLError` be thrown in case no data is returned. Recommended to not rely on this error for returning "404 Not Found" response to user but rather consider that error as internal server problems. Because if all of that methods used correctly, there won't be any `SQLError` error thrown.
 
 To run some queries in one transaction, use a separate version of SQL tag, created by `SQLFactory` and pass new client from `pool.connect()` method in options.
 

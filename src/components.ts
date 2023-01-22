@@ -5,6 +5,7 @@ class SQLComponent<Value = any> {
   }
 }
 
+export class SQLComponentRaw extends SQLComponent {}
 export class SQLComponentL extends SQLComponent {}
 export class SQLComponentI extends SQLComponent {}
 export class SQLComponentS extends SQLComponent<string> {}
